@@ -6,6 +6,7 @@ from PIL import Image
 def apply_transformations(im_path, im_size):
     
     im = Image.open(im_path)
+    print("Applying transformations...")
     tfs = T.Compose([T.ToTensor(), T.Resize(im_size), T.RandomHorizontalFlip(),
                      T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
                      ])
@@ -42,6 +43,7 @@ def predict(model, im, device):
     
     model.to(device)
     model.eval()
+    print("Get feature maps and predict a class...")
     fm = model.forward_features(im.unsqueeze(0).to(device))
     preds = model.forward_head(fm)
     values, indices = torch.topk(preds, k=5)
@@ -67,19 +69,16 @@ def plot_fms(model, im, save_path):
         if ".Conv2d" in str(type(layer)):
             di[f"Layer_{i}"] = im
     
-    # Plot feature_maps for each block
+    print("Saving feature maps images...")
     for i, fmap in enumerate(list(di.values())):
-        # print(f"\t\t     {list(di.keys())[i]}")
         ix = 1
         plt.figure()
         
         for _ in range(height):
             for _ in range(width):
-            # specify subplot and turn of axis
                 ax = plt.subplot(height, width, ix)
                 ax.set_xticks([])
                 ax.set_yticks([])
-                # plot filter channel in grayscale
                 plt.imshow(fmap[ix-1, :, :].detach().numpy(), cmap='gray')
                 ix += 1
         os.makedirs(f"{save_path}", exist_ok=True)
@@ -87,4 +86,6 @@ def plot_fms(model, im, save_path):
         plt.show()
         
         if fmap is not list(di.values())[-1]:
-            print("-"*48)
+            print("."*48)
+            
+    print(f"Check the results in ./{save_path}/")
