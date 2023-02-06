@@ -6,6 +6,7 @@ def get_di(model, im, model_name):
     
     di = {}
     height, width = 4, 6
+    last_im_dim = None
     
     if model_name == "vgg16": 
         layers = model.features
@@ -23,7 +24,9 @@ def get_di(model, im, model_name):
     for i, layer in enumerate(layers):
         im = im.unsqueeze(0) if i == 0 and model_name == "efficientnet_b3" else im
         im = layer(im)
-        di[f"Layer_{i}"] = im.squeeze() if not ".Conv2d" in str(type(layer)) else 0
+        im_shape = im.shape[2:] if len(im.shape) == 4 else im.shape[1:]
+        if last_im_dim != im_shape: di[f"Layer_{i}"] = im.squeeze()
+        last_im_dim = im.shape[2:] if len(im.shape) == 4 else im.shape[1:]
                 
     return di, height, width
 
@@ -44,24 +47,22 @@ def plot_fms(model, im, save_path, device, model_name):
     
     print("Saving feature maps images...")
     for i, fmap in enumerate(list(di.values())):
-        if type(fmap) == int: pass
-        else:
-            print(f"Feature map shape: {fmap.shape}")
-            ix = 1
-            plt.figure()
+        print(f"Feature map shape: {fmap.shape}")
+        ix = 1
+        plt.figure()
 
-            for _ in range(height):
-                for _ in range(width):
-                    ax = plt.subplot(height, width, ix)
-                    ax.set_xticks([])
-                    ax.set_yticks([])
-                    plt.imshow(fmap[ix-1, :, :].detach().cpu().numpy(), cmap='gray')
-                    ix += 1
-            os.makedirs(f"{save_path}", exist_ok=True)
-            plt.savefig(f"{save_path}/{list(di.keys())[i]}.png")
-            # plt.show()
+        for _ in range(height):
+            for _ in range(width):
+                ax = plt.subplot(height, width, ix)
+                ax.set_xticks([])
+                ax.set_yticks([])
+                plt.imshow(fmap[ix-1, :, :].detach().cpu().numpy(), cmap='gray')
+                ix += 1
+        os.makedirs(f"{save_path}", exist_ok=True)
+        plt.savefig(f"{save_path}/{list(di.keys())[i]}.png")
+        # plt.show()
 
-            if fmap is not list(di.values())[-1]:
-                print("."*48)
+        if fmap is not list(di.values())[-1]:
+            print("."*48)
             
     print(f"Check the results in ./{save_path}/")
