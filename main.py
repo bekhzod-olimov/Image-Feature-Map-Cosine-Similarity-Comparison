@@ -21,8 +21,8 @@ if __name__ == "__main__":
     parser.add_argument('-d', '--device', default='cuda:3', help='gpu device name')
     # parser.add_argument('-mn', '--model_name', default='vgg16', help='a model name from timm models')
     # parser.add_argument('-mn', '--model_name', default='rexnet_150', help='a model name from timm models')
-    parser.add_argument('-mn', '--model_name', default='darknet53', help='a model name from timm models')
-    # parser.add_argument('-mn', '--model_name', default='efficientnet_b3', help='a model name from timm models')
+    # parser.add_argument('-mn', '--model_name', default='darknet53', help='a model name from timm models')
+    parser.add_argument('-mn', '--model_name', default='efficientnet_b3', help='a model name from timm models')
     
     
     args = parser.parse_args() 
