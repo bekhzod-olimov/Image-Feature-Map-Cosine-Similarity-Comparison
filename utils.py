@@ -1,5 +1,6 @@
-import os, torch, timm
+import os, torch, timm, cv2
 from imagenet_classes import get_classes
+from torchvision import transforms
 
 def switch_to_eval(model, device):
     
@@ -47,3 +48,26 @@ def predict(model, im, device):
 
     return values.squeeze(), indices.squeeze()
 
+def preprocess(im1, im2):
+    
+    invTrans = transforms.Compose([ transforms.Normalize(mean = [ 0., 0., 0. ],
+                                                     std = [ 1/0.229, 1/0.224, 1/0.225 ]),
+                                transforms.Normalize(mean = [ -0.485, -0.456, -0.406 ],
+                                                     std = [ 1., 1., 1. ]),
+                               ])
+    
+    im1 = invTrans(im1).permute(1,2,0).detach().cpu().numpy() * 255
+    im2 = invTrans(im2).permute(1,2,0).detach().cpu().numpy() * 255
+    concat_im = cv2.hconcat([im1, im2])
+    
+    return concat_im
+
+
+def compute_cos_similarity(model, im1, im2, sim_fn):
+    
+    im1_fm = get_fm(model.forward_features(im1.unsqueeze(0)))
+    im2_fm = get_fm(model.forward_features(im2.unsqueeze(0)))
+    cos_sim = sim_fn(im1_fm, im2_fm).item()
+    print(f"Similarity between images is {cos_sim:.3f}")
+    
+    return cos_sim
