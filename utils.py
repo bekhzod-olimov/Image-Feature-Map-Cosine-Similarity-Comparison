@@ -29,7 +29,7 @@ def get_fm(fm):
 
 def load_model(model_name, num_classes):
 
-    assert model_name in list(timm.list_models()), "Please choose the correct version of a model (refer to list(timm.list_models()))"
+    assert model_name in ["vgg16", "rexnet_150", "efficientnet_b3", "darknet53"], "Please choose the avaliable version of a timm model"
     model = timm.create_model(model_name, pretrained=True, num_classes=num_classes)
     print(f"{model_name} model is successfully loaded!")
     
@@ -68,6 +68,6 @@ def compute_cos_similarity(model, im1, im2, sim_fn):
     im1_fm = get_fm(model.forward_features(im1.unsqueeze(0)))
     im2_fm = get_fm(model.forward_features(im2.unsqueeze(0)))
     cos_sim = sim_fn(im1_fm, im2_fm).item()
-    print(f"Similarity between images is {cos_sim:.3f}")
+    print(f"Similarity between images is {cos_sim:.3f}\n")
     
     return cos_sim
