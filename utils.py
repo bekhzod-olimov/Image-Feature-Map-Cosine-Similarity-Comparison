@@ -42,7 +42,7 @@ def predict(model, im, device):
     print(f"Inference on the {device}!")
     fm = model.forward_features(im.unsqueeze(0).to(device))
     preds = model.forward_head(fm)
-    values, indices = torch.topk(preds, k=5)
+    values, indices = torch.topk(preds, k=3)
     print(f"The image is predicted as {classes[indices[0][0].item()]} with {values[0][0].item():.2f}% confidence!")
 
     return values.squeeze(), indices.squeeze()
