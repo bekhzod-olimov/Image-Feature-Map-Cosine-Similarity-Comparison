@@ -1,5 +1,4 @@
 import os, torch, timm
-from matplotlib import pyplot as plt
 import torchvision.transforms as T
 from PIL import Image
 
@@ -43,49 +42,10 @@ def predict(model, im, device):
     
     model.to(device)
     model.eval()
-    print("Get feature maps and predict a class...")
+    print("Obtaining feature maps and predict a class...")
     fm = model.forward_features(im.unsqueeze(0).to(device))
     preds = model.forward_head(fm)
     values, indices = torch.topk(preds, k=5)
 
     return values.squeeze(), indices.squeeze()
 
-def plot_fms(model, im, save_path):
-    
-    """ 
-    Gets a model with an image and plots feature maps from the convolution layers.
-    
-    Arguments:
-        model - a timm model;
-        im - tensor image with transformations;
-        save_path - path to the directory to save images.
-
-    """
-    
-    height, width = 8, 8
-    di = {}
-    for i, layer in enumerate(model.features):
-        im = layer(im)
-        if ".Conv2d" in str(type(layer)):
-            di[f"Layer_{i}"] = im
-    
-    print("Saving feature maps images...")
-    for i, fmap in enumerate(list(di.values())):
-        ix = 1
-        plt.figure()
-        
-        for _ in range(height):
-            for _ in range(width):
-                ax = plt.subplot(height, width, ix)
-                ax.set_xticks([])
-                ax.set_yticks([])
-                plt.imshow(fmap[ix-1, :, :].detach().numpy(), cmap='gray')
-                ix += 1
-        os.makedirs(f"{save_path}", exist_ok=True)
-        plt.savefig(f"{save_path}/{list(di.keys())[i]}.png")
-        plt.show()
-        
-        if fmap is not list(di.values())[-1]:
-            print("."*48)
-            
-    print(f"Check the results in ./{save_path}/")
