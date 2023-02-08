@@ -27,7 +27,11 @@ def run(args):
         
         # Compute cosine similarity between two images
         cos_sim = compute_cos_similarity(model, im1, im2, cos)
+        
+        # Concatenate the images
         concat_im = preprocess(im1, im2)
+        
+        # Write cosine similarity score to the concatenated image
         I1 = ImageDraw.Draw(concat_im)
         I1.text((150, 10), f"Similarity: {cos_sim:.2f}", font=ImageFont.truetype("arial.ttf", 25), fill=(0, 0, 255))
         os.makedirs(f"concat_ims/{args.model_name}", exist_ok=True)
