@@ -19,8 +19,13 @@ def run(args):
     # Go through the number of experiments
     for i in range(args.experiments):
     
+        # Apply image transformations to the image #1
         im1 = apply_transformations(args.image_path_1, inp_size, False)
+        
+        # Apply image transformations to the image #1
         im2 = apply_transformations(args.image_path_1, inp_size, True)
+        
+        # Compute cosine similarity between two images
         cos_sim = compute_cos_similarity(model, im1, im2, cos)
         concat_im = preprocess(im1, im2)
         I1 = ImageDraw.Draw(concat_im)
