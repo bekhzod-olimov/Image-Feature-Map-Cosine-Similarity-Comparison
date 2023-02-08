@@ -12,8 +12,11 @@ def run(args):
     
     # Initialize cosine similarity computation function
     cos = torch.nn.CosineSimilarity(dim=1, eps=1e-08)
+    
+    # Get model and input size for the loaded model
     model, inp_size = load_model(args.model_name, 1000)
     
+    # Go through the number of experiments
     for i in range(args.experiments):
     
         im1 = apply_transformations(args.image_path_1, inp_size, False)
