@@ -6,9 +6,11 @@ from PIL import ImageDraw
 
 def run(args):
 
+    # Print Arguments
     argstr = yaml.dump(args.__dict__, default_flow_style=False)
     print(f"\nArguments:\n\n{argstr}")
     
+    # Initialize cosine similarity computation function
     cos = torch.nn.CosineSimilarity(dim=1, eps=1e-08)
     model, inp_size = load_model(args.model_name, 1000)
     
