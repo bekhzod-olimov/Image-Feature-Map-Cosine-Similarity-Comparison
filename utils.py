@@ -38,7 +38,17 @@ def get_fm(fm):
         return torch.reshape(pool(fm), (-1, fm.shape[1]))
 
 def load_model(model_name, num_classes):
-
+    
+    """
+    
+    Get a model name along with number of classes in the dataset
+    and returns created model along with input size to the model.
+    
+    Arguments:
+    model_name - a model name in timm models list;
+    num_classes - number of classes in the considered dataset.
+    
+    """
     assert model_name in ["vgg16", "rexnet_150", "efficientnet_b3", "darknet53"], "Please choose the avaliable version of a timm model"
     model = timm.create_model(model_name, pretrained=True, num_classes=num_classes)
     print(f"{model_name} model is successfully loaded!")
