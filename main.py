@@ -33,6 +33,9 @@ def run(args):
         
         # Write cosine similarity score to the concatenated image
         I1 = ImageDraw.Draw(concat_im)
+        
+        # Choose place to write the text:
+        # width: 150, height: 10; text is in f-string; fill is a color of the text
         I1.text((150, 10), f"Similarity: {cos_sim:.2f}", font=ImageFont.truetype("arial.ttf", 25), fill=(0, 0, 255))
         os.makedirs(f"concat_ims/{args.model_name}", exist_ok=True)
         cv2.imwrite(f"concat_ims/{args.model_name}/sample_{i}_{cos_sim:.2f}.jpg", np.array(concat_im))
