@@ -4,6 +4,16 @@ from torchvision import transforms
 
 def switch_to_eval(model, device):
     
+    """
+    
+    Gets a model as well as gpu device type and moves the model to the gpu device.
+    
+    Arguments:
+    model - a cpu model;
+    device - gpu device type.
+    
+    """
+    
     model.to(device)
     model.eval()
     
