@@ -37,7 +37,11 @@ def run(args):
         # Choose place to write the text:
         # width: 150, height: 10; text is in f-string; fill is a color of the text
         I1.text((150, 10), f"Similarity: {cos_sim:.2f}", font=ImageFont.truetype("arial.ttf", 25), fill=(0, 0, 255))
+        
+        # Make a directory if does not exist
         os.makedirs(f"concat_ims/{args.model_name}", exist_ok=True)
+        
+        # Save the image
         cv2.imwrite(f"concat_ims/{args.model_name}/sample_{i}_{cos_sim:.2f}.jpg", np.array(concat_im))
 
 if __name__ == "__main__":
