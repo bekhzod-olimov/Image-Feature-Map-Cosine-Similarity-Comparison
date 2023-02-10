@@ -3,6 +3,16 @@ from PIL import Image
 
 def apply_transformations(im_path, im_size, random_tfs):
     
+    """
+    Gets an image path, image size, as well as tranformations and applies transformations to the image.
+    
+    Arguments:
+    
+    
+    
+    
+    """
+    
     im = Image.open(im_path)
     print("Applying transformations...")
     
