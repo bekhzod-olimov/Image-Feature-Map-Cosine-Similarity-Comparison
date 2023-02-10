@@ -54,8 +54,13 @@ def get_di(model, im, model_name):
         # Go through the convolution stem layers
         im = model.stem(im.unsqueeze(dim=0))
     
+    # Go through the feature extraction layers
     for i, layer in enumerate(layers):
+        
+        # Prepare an image
         im = im.unsqueeze(0) if i == 0 and model_name == "efficientnet_b3" else im
+        
+        # Get the output of the features from the corresponding feature extraction layer
         im = layer(im)
         im_shape = im.shape[2:] if len(im.shape) == 4 else im.shape[1:]
         if last_im_dim != im_shape: di[f"Layer_{i}"] = im.squeeze()
