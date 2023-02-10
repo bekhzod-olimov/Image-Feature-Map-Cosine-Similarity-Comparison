@@ -4,6 +4,13 @@ from utils import switch_to_eval
 
 def get_di(model, im, model_name):
     
+    """
+    Gets a model, image, as well as model name
+    and returns dictionary with image height and width
+    
+    
+    """
+    
     di = {}
     height, width = 4, 6
     last_im_dim = None
