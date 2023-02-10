@@ -13,10 +13,13 @@ def apply_transformations(im_path, im_size, random_tfs):
     
     """
     
+    # Load an image from the given path
     im = Image.open(im_path)
     print("Applying transformations...")
     
-    tfs = T.Compose([T.ToTensor(), T.Resize(im_size), 
+    # Initialize transformations
+    tfs = T.Compose([T.ToTensor(), # 
+                     T.Resize(im_size), 
                      T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
                      ])
     random_rotation = T.Compose([T.RandomRotation(45)])
