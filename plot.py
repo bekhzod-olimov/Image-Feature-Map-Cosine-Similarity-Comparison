@@ -38,9 +38,14 @@ def get_di(model, im, model_name):
         # Go through the stem layers
         im = model.stem(im.unsqueeze(dim=0))
         
+    # EfficientNet
     elif model_name == "efficientnet_b3":
+        # Set feature extraction layers
         layers = model.blocks
+        
+        # Go through the convolution stem layers
         im = model.conv_stem(im)
+        
     elif model_name == "darknet53":
         layers = model.stages
         im = model.stem(im.unsqueeze(dim=0))
