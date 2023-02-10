@@ -7,9 +7,9 @@ def apply_transformations(im_path, im_size, random_tfs):
     Gets an image path, image size, as well as tranformations and applies transformations to the image.
     
     Arguments:
-    
-    
-    
+    im_path - a path to the image to be transformed;
+    im_size - desired size for the image;
+    random_tfs - transformations to be applied.
     
     """
     
