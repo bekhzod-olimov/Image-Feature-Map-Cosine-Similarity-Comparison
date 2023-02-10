@@ -62,8 +62,14 @@ def get_di(model, im, model_name):
         
         # Get the output of the features from the corresponding feature extraction layer
         im = layer(im)
+        
+        # Get the shape of the feature maps
         im_shape = im.shape[2:] if len(im.shape) == 4 else im.shape[1:]
+        
+        # Write feature maps to the dictionary
         if last_im_dim != im_shape: di[f"Layer_{i}"] = im.squeeze()
+            
+        # Get shape of the last feature map
         last_im_dim = im.shape[2:] if len(im.shape) == 4 else im.shape[1:]
                 
     return di, height, width
