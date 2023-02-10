@@ -4,12 +4,12 @@ from PIL import Image
 def apply_transformations(im_path, im_size, random_tfs):
     
     """
-    Gets an image path, image size, as well as tranformations and applies transformations to the image.
+    Gets an image path, image size, as well as random transformations and applies transformations to the image.
     
     Arguments:
-    im_path - a path to the image to be transformed;
-    im_size - desired size for the image;
-    random_tfs - transformations to be applied.
+    im_path - a path to the image to be transformed, str;
+    im_size - desired size for the image, tuple;
+    random_tfs - apply a random transformation or not, bool.
     
     """
     
@@ -24,6 +24,8 @@ def apply_transformations(im_path, im_size, random_tfs):
                                  std=(0.229, 0.224, 0.225)), # normalization
                      ])
     
+    # Initialize rotation transformation
     random_rotation = T.Compose([T.RandomRotation(45)])
    
+    # Output image depending on the random_transformations
     return random_rotation(tfs(im)) if random_tfs else tfs(im)
