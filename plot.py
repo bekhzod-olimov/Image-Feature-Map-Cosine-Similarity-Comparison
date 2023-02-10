@@ -6,8 +6,12 @@ def get_di(model, im, model_name):
     
     """
     Gets a model, image, as well as model name
-    and returns dictionary with image height and width
+    and returns dictionary with image height and width.
     
+    Arguments:
+    model - a model to be trained;
+    im - image;
+    model_name - name of the model.
     
     """
     
