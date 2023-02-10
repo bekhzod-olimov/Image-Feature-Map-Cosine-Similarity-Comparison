@@ -23,14 +23,21 @@ def get_di(model, im, model_name):
     last_im_dim = None
     
     # Set layers to extract features based on the model name
+    # VGG
     if model_name == "vgg16":
         
         # Set feature extraction layers
         layers = model.features
         height, width = 8, 8
+    
+    # RexNet
     elif model_name == "rexnet_150": 
+        # Set feature extraction layers
         layers = model.features
+        
+        # Go through the stem layers
         im = model.stem(im.unsqueeze(dim=0))
+        
     elif model_name == "efficientnet_b3":
         layers = model.blocks
         im = model.conv_stem(im)
