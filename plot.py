@@ -22,7 +22,10 @@ def get_di(model, im, model_name):
     height, width = 4, 6
     last_im_dim = None
     
-    if model_name == "vgg16": 
+    # Set layers to extract features based on the model name
+    if model_name == "vgg16":
+        
+        # Set feature extraction layers
         layers = model.features
         height, width = 8, 8
     elif model_name == "rexnet_150": 
