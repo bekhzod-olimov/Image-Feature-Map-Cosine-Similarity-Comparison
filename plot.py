@@ -46,8 +46,12 @@ def get_di(model, im, model_name):
         # Go through the convolution stem layers
         im = model.conv_stem(im)
         
+    # DarkNet
     elif model_name == "darknet53":
+        # Set feature extraction layers
         layers = model.stages
+        
+        # Go through the convolution stem layers
         im = model.stem(im.unsqueeze(dim=0))
     
     for i, layer in enumerate(layers):
