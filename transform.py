@@ -18,10 +18,12 @@ def apply_transformations(im_path, im_size, random_tfs):
     print("Applying transformations...")
     
     # Initialize transformations
-    tfs = T.Compose([T.ToTensor(), # 
-                     T.Resize(im_size), 
-                     T.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
+    tfs = T.Compose([T.ToTensor(), # transform to tensor
+                     T.Resize(im_size), # resize
+                     T.Normalize(mean=(0.485, 0.456, 0.406),
+                                 std=(0.229, 0.224, 0.225)), # normalization
                      ])
+    
     random_rotation = T.Compose([T.RandomRotation(45)])
    
     return random_rotation(tfs(im)) if random_tfs else tfs(im)
