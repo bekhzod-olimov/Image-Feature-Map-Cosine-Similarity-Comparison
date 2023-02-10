@@ -15,7 +15,10 @@ def get_di(model, im, model_name):
     
     """
     
+    # Initialize a dictionary
     di = {}
+    
+    # Set height and width
     height, width = 4, 6
     last_im_dim = None
     
