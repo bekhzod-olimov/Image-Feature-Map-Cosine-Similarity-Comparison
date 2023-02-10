@@ -6,7 +6,7 @@ def get_di(model, im, model_name):
     
     """
     Gets a model, image, as well as model name
-    and returns dictionary with image height and width.
+    and returns dictionary with plot's height and width.
     
     Arguments:
     model - a model to be trained;
@@ -85,8 +85,14 @@ def plot_fms(model, im, save_path, device, model_name):
         save_path - path to the directory to save images.
 
     """
+    
+    # Move the model to gpu device
     model = switch_to_eval(model, device)
+    
+    # Move the image to gpu device
     im = im.to(device)
+    
+    # Get dictionary as well as height and width of the plot
     di, height, width = get_di(model, im, model_name)    
     
     print("Saving feature maps images...")
