@@ -60,7 +60,7 @@ def predict(model, im, device):
     
     """
     
-    This function gets model, image, gpu device and return topk values and indices.
+    This function gets model, image, gpu device and return top3 values and indices.
     
     Arguments:
     
@@ -80,7 +80,11 @@ def predict(model, im, device):
     
     # Get feature maps
     fm = model.forward_features(im.unsqueeze(0).to(device))
+    
+    # Get the predicted classes
     preds = model.forward_head(fm)
+    
+    # Get the top3 values and indices
     values, indices = torch.topk(preds, k=3)
     print(f"The image is predicted as {classes[indices[0][0].item()]} with {values[0][0].item():.2f}% confidence!")
 
@@ -88,18 +92,29 @@ def predict(model, im, device):
 
 def preprocess(im1, im2):
     
-    invTrans = transforms.Compose([ transforms.Normalize(mean = [ 0., 0., 0. ],
-                                                     std = [ 1/0.229, 1/0.224, 1/0.225 ]),
-                                transforms.Normalize(mean = [ -0.485, -0.456, -0.406 ],
-                                                     std = [ 1., 1., 1. ]),
+    """
+    
+    This function gets two images, applies transformations, and returns a concatenaed image.
+    
+    Arguments:
+    
+        im1 - image number 1;
+        im2 - image number 2.
+    
+    """
+    
+    # Initialize inverse function for normalization    
+    invTrans = transforms.Compose([
+                                   transforms.Normalize(mean = [ 0., 0., 0. ], std = [ 1/0.229, 1/0.224, 1/0.225 ]),
+                                   transforms.Normalize(mean = [ -0.485, -0.456, -0.406 ], std = [ 1., 1., 1. ])
                                ])
     
+    # Apply transformations and change from tensor to array
     im1 = invTrans(im1).permute(1,2,0).detach().cpu().numpy() * 255
     im2 = invTrans(im2).permute(1,2,0).detach().cpu().numpy() * 255
-    concat_im = cv2.hconcat([im1, im2])
     
-    return concat_im
-
+    # Return a concatenated image
+    return cv2.hconcat([im1, im2])
 
 def compute_cos_similarity(model, im1, im2, sim_fn):
     
