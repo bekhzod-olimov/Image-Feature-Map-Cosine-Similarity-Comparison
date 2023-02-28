@@ -1,3 +1,4 @@
+# Import libraries
 import os, torch, timm, cv2
 from imagenet_classes import get_classes
 from torchvision import transforms
@@ -9,8 +10,9 @@ def switch_to_eval(model, device):
     Gets a model as well as gpu device type and moves the model to the gpu device.
     
     Arguments:
-    model - a cpu model;
-    device - gpu device type.
+    
+        model - a cpu model;
+        device - gpu device type.
     
     """
     
@@ -23,13 +25,11 @@ def get_fm(fm):
         
         """
         
-        Gets feature map with size (bs, fm_shape, 7, 7)
-        applies average pooling and returns feature map
-        with shape (bs, fm_shape).
+        Gets feature map with size (bs, fm_shape, 7, 7) applies average pooling and returns feature map with shape (bs, fm_shape).
         
         Argument:
         
-        fm - feature map.
+            fm - feature map.
         
         """
         
@@ -41,14 +41,15 @@ def load_model(model_name, num_classes):
     
     """
     
-    Get a model name along with number of classes in the dataset
-    and returns created model along with input size to the model.
+    Get a model name along with number of classes in the dataset and returns created model along with input size to the model.
     
     Arguments:
-    model_name - a model name in timm models list;
-    num_classes - number of classes in the considered dataset.
+    
+        model_name - a model name in timm models list;
+        num_classes - number of classes in the considered dataset.
     
     """
+    
     assert model_name in ["vgg16", "rexnet_150", "efficientnet_b3", "darknet53"], "Please choose the avaliable version of a timm model"
     model = timm.create_model(model_name, pretrained=True, num_classes=num_classes)
     print(f"{model_name} model is successfully loaded!")
@@ -56,6 +57,8 @@ def load_model(model_name, num_classes):
     return model, model.pretrained_cfg["input_size"][1:] # tuple()
 
 def predict(model, im, device):
+    
+    
     
     classes = get_classes()
     model = switch_to_eval(model, device)
