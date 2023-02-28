@@ -118,6 +118,19 @@ def preprocess(im1, im2):
 
 def compute_cos_similarity(model, im1, im2, sim_fn):
     
+    """
+    
+    This function gets model, two images, and similarity function and returns similarity score for the images.
+    
+    Arguments:
+    
+        model - 
+        im1 - 
+        im2 - 
+        sim_fn - 
+    
+    """
+    
     im1_fm = get_fm(model.forward_features(im1.unsqueeze(0)))
     im2_fm = get_fm(model.forward_features(im2.unsqueeze(0)))
     cos_sim = sim_fn(im1_fm, im2_fm).item()
