@@ -58,12 +58,27 @@ def load_model(model_name, num_classes):
 
 def predict(model, im, device):
     
+    """
     
+    This function gets model, image, gpu device and return topk values and indices.
     
+    Arguments:
+    
+        model - model to be trained;
+        im - an image;
+        device - gpu device name.
+    
+    """
+
+    # Get imagenet classes
     classes = get_classes()
+    
+    # Move the model to gpu
     model = switch_to_eval(model, device)
     print("Obtaining feature maps and predict a class...")
     print(f"Inference on the {device}!")
+    
+    # Get feature maps
     fm = model.forward_features(im.unsqueeze(0).to(device))
     preds = model.forward_head(fm)
     values, indices = torch.topk(preds, k=3)
