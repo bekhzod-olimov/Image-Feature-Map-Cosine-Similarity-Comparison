@@ -13,6 +13,10 @@ def switch_to_eval(model, device):
     
         model - a cpu model;
         device - gpu device type.
+        
+    Output:
+    
+        model that is switched to evaluation mode and moved to gpu.
     
     """
     
@@ -31,6 +35,10 @@ def get_fm(fm):
         
             fm - feature map.
         
+        Output:
+        
+            2D feature map with the shape of (batch_size, feature map shape)
+            
         """
         
         pool = torch.nn.AvgPool2d((fm.shape[2],fm.shape[3]))
@@ -47,6 +55,10 @@ def load_model(model_name, num_classes):
     
         model_name - a model name in timm models list;
         num_classes - number of classes in the considered dataset.
+        
+    Output:
+    
+        model and input size for the model.
     
     """
     
@@ -67,6 +79,10 @@ def predict(model, im, device):
         model - model to be trained;
         im - an image;
         device - gpu device name.
+        
+   Outputs:
+   
+       top3 values and indices.
     
     """
 
@@ -101,6 +117,10 @@ def preprocess(im1, im2):
         im1 - image number 1;
         im2 - image number 2.
     
+    Output:
+    
+        a concatened image.
+        
     """
     
     # Initialize inverse function for normalization    
@@ -124,15 +144,22 @@ def compute_cos_similarity(model, im1, im2, sim_fn):
     
     Arguments:
     
-        model - 
-        im1 - 
-        im2 - 
-        sim_fn - 
+        model - trained model;
+        im1 - the first image to be compared;
+        im2 - the second image to be compared;
+        sim_fn - function to compute similarity
+        
+    Output:
+    
+        cos_sim - cosine similarity score between the two images.
     
     """
     
+    # Get feature maps of the images
     im1_fm = get_fm(model.forward_features(im1.unsqueeze(0)))
     im2_fm = get_fm(model.forward_features(im2.unsqueeze(0)))
+    
+    # Compute similarity score
     cos_sim = sim_fn(im1_fm, im2_fm).item()
     print(f"Similarity between images is {cos_sim:.3f}\n")
     
