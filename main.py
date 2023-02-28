@@ -1,3 +1,4 @@
+# Import libraries
 import argparse, yaml
 from utils import *
 from plot import plot_fms
@@ -6,7 +7,7 @@ from PIL import ImageDraw
 
 def run(args):
 
-    # Print Arguments
+    # Print arguments
     argstr = yaml.dump(args.__dict__, default_flow_style=False)
     print(f"\nArguments:\n\n{argstr}")
     
@@ -56,7 +57,6 @@ if __name__ == "__main__":
     # parser.add_argument('-mn', '--model_name', default='rexnet_150', help='a model name from timm models')
     # parser.add_argument('-mn', '--model_name', default='darknet53', help='a model name from timm models')
     # parser.add_argument('-mn', '--model_name', default='efficientnet_b3', help='a model name from timm models')
-    
     
     args = parser.parse_args() 
     
