@@ -1,17 +1,19 @@
-from matplotlib import pyplot as plt
+# Import libraries
 import os
+from matplotlib import pyplot as plt
 from utils import switch_to_eval
 
 def get_di(model, im, model_name):
     
     """
-    Gets a model, image, as well as model name
-    and returns dictionary with plot's height and width.
+    
+    This function gets a model, image, as well as model name and returns dictionary with plot's height and width.
     
     Arguments:
-    model - a model to be trained;
-    im - image;
-    model_name - name of the model.
+    
+        model - a model to be trained;
+        im - an image;
+        model_name - name of the model.
     
     """
     
@@ -22,8 +24,7 @@ def get_di(model, im, model_name):
     height, width = 4, 6
     last_im_dim = None
     
-    # Set layers to extract features based on the model name
-    # VGG
+    # Set layers to extract features based on the model name (VGG16 in this case)
     if model_name == "vgg16":
         
         # Set feature extraction layers
