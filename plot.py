@@ -11,9 +11,9 @@ def get_di(model, im, model_name):
     
     Arguments:
     
-        model - a model to be trained;
-        im - an image;
-        model_name - name of the model.
+        model - a model to be trained, timm model;
+        im - an image, tensor;
+        model_name - name of the model, str.
     
     """
     
@@ -78,12 +78,14 @@ def get_di(model, im, model_name):
 def plot_fms(model, im, save_path, device, model_name):
     
     """ 
-    Gets a model with an image and plots feature maps from the convolution layers.
+    
+    This function gets a model with an image and plots feature maps from the convolution layers.
     
     Arguments:
-        model - a timm model;
-        im - tensor image with transformations;
-        save_path - path to the directory to save images.
+    
+        model - a model, timm model;
+        im - an image after transformations application, tensor;
+        save_path - a path to the directory to save images, str.
 
     """
     
