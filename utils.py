@@ -7,11 +7,11 @@ def switch_to_eval(model, device):
     
     """
     
-    Gets a model as well as gpu device type and moves the model to the gpu device.
+    This function gets a model as well as gpu device type and moves the model to the gpu device.
     
     Arguments:
     
-        model - a cpu model;
+        model  - a cpu model;
         device - gpu device type.
         
     Output:
@@ -29,7 +29,7 @@ def get_fm(fm):
         
         """
         
-        Gets feature map with size (bs, fm_shape, 7, 7) applies average pooling and returns feature map with shape (bs, fm_shape).
+        This function gets feature map with size (bs, fm_shape, 7, 7) applies average pooling and returns feature map with shape (bs, fm_shape).
         
         Argument:
         
@@ -49,11 +49,11 @@ def load_model(model_name, num_classes):
     
     """
     
-    Get a model name along with number of classes in the dataset and returns created model along with input size to the model.
+    This function gets a model name along with number of classes in the dataset and returns created model along with input size to the model.
     
     Arguments:
     
-        model_name - a model name in timm models list;
+        model_name  - a model name in timm models list;
         num_classes - number of classes in the considered dataset.
         
     Output:
@@ -76,8 +76,8 @@ def predict(model, im, device):
     
     Arguments:
     
-        model - model to be trained;
-        im - an image;
+        model  - model to be trained;
+        im     - an image;
         device - gpu device name.
         
    Outputs:
@@ -144,9 +144,9 @@ def compute_cos_similarity(model, im1, im2, sim_fn):
     
     Arguments:
     
-        model - trained model;
-        im1 - the first image to be compared;
-        im2 - the second image to be compared;
+        model  - trained model;
+        im1    - the first image to be compared;
+        im2    - the second image to be compared;
         sim_fn - function to compute similarity
         
     Output:
@@ -156,8 +156,7 @@ def compute_cos_similarity(model, im1, im2, sim_fn):
     """
     
     # Get feature maps of the images
-    im1_fm = get_fm(model.forward_features(im1.unsqueeze(0)))
-    im2_fm = get_fm(model.forward_features(im2.unsqueeze(0)))
+    im1_fm, im2_fm  = get_fm(model.forward_features(im1.unsqueeze(0))), get_fm(model.forward_features(im2.unsqueeze(0)))
     
     # Compute similarity score
     cos_sim = sim_fn(im1_fm, im2_fm).item()
