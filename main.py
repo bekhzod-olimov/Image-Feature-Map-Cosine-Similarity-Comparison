@@ -25,6 +25,7 @@ def run(args):
         
         # Apply image transformations to the image #1
         im2 = apply_transformations(args.image_path_1, inp_size, True)
+#         im2 = apply_transformations(args.image_path_2, inp_size, True)
         
         # Compute cosine similarity between two images
         cos_sim = compute_cos_similarity(model, im1, im2, cos)
@@ -47,7 +48,10 @@ def run(args):
 
 if __name__ == "__main__":
     
-    parser = argparse.ArgumentParser(description='Feature Map Visualization Arguments')
+    # Initialize parser
+    parser = argparse.ArgumentParser(description = 'Feature Map Visualization Arguments')
+    
+    # Add arguments
     parser.add_argument('-ip1', '--image_path_1', default='kuvasz.jpg', help='path to the first image')
     parser.add_argument('-ip2', '--image_path_2', default='cup.jpg', help='path to the second image')
     parser.add_argument('-sp', '--save_path', default='fm_images', help='path to a directory to save feature map images')
@@ -58,6 +62,8 @@ if __name__ == "__main__":
     # parser.add_argument('-mn', '--model_name', default='darknet53', help='a model name from timm models')
     # parser.add_argument('-mn', '--model_name', default='efficientnet_b3', help='a model name from timm models')
     
+    # Parse the arguments
     args = parser.parse_args() 
     
+    # Run the script
     run(args) 
