@@ -11,9 +11,15 @@ def get_di(model, im, model_name):
     
     Arguments:
     
-        model - a model to be trained, timm model;
-        im - an image, tensor;
+        model      - a model to be trained, timm model;
+        im         - an image, tensor;
         model_name - name of the model, str.
+        
+    Outputs:
+    
+        di         - dictionary with layer names as keys and feature maps as values, dictionary;
+        height     - height of the plot, int;
+        width      - width of the plot, int
     
     """
     
