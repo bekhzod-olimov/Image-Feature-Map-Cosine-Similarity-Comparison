@@ -89,9 +89,13 @@ def plot_fms(model, im, save_path, device, model_name):
     
     Arguments:
     
-        model - a model, timm model;
-        im - an image after transformations application, tensor;
+        model     - a model, timm model;
+        im        - an image after transformations application, tensor;
         save_path - a path to the directory to save images, str.
+        
+    Output:
+    
+        saved images of the feature maps.
 
     """
     
