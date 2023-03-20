@@ -63,7 +63,7 @@ def load_model(model_name, num_classes):
     """
     
     assert model_name in ["vgg16", "rexnet_150", "efficientnet_b3", "darknet53"], "Please choose the avaliable version of a timm model"
-    model = timm.create_model(model_name, pretrained=True, num_classes=num_classes)
+    model = timm.create_model(model_name, pretrained = True, num_classes = num_classes)
     print(f"{model_name} model is successfully loaded!")
     
     return model, model.pretrained_cfg["input_size"][1:] # tuple()
@@ -144,10 +144,10 @@ def compute_cos_similarity(model, im1, im2, sim_fn):
     
     Arguments:
     
-        model  - trained model;
-        im1    - the first image to be compared;
-        im2    - the second image to be compared;
-        sim_fn - function to compute similarity
+        model   - trained model;
+        im1     - the first image to be compared;
+        im2     - the second image to be compared;
+        sim_fn  - function to compute similarity
         
     Output:
     
