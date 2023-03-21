@@ -13,8 +13,8 @@ This repository contains scripts to get and visualize feature maps using differe
 
 ### DarkNet-53
 
-![Layer_3](https://user-images.githubusercontent.com/50166164/226510728-8fdfd7fa-2430-4857-a403-6073fbf58451.png)
 ![Layer_4](https://user-images.githubusercontent.com/50166164/226510730-e14d81cb-3257-4c95-989c-85e713825df7.png)
-![Layer_0](https://user-images.githubusercontent.com/50166164/226510732-4d108536-46a1-4f4f-b870-6f61e6e632fb.png)
-![Layer_1](https://user-images.githubusercontent.com/50166164/226510734-c988eaaf-e37d-404a-8041-f6d92ae33a94.png)
+![Layer_3](https://user-images.githubusercontent.com/50166164/226510728-8fdfd7fa-2430-4857-a403-6073fbf58451.png)
 ![Layer_2](https://user-images.githubusercontent.com/50166164/226510735-ecb3600f-86d4-4fa3-8f0d-f8f8fa82870b.png)
+![Layer_1](https://user-images.githubusercontent.com/50166164/226510734-c988eaaf-e37d-404a-8041-f6d92ae33a94.png)
+![Layer_0](https://user-images.githubusercontent.com/50166164/226510732-4d108536-46a1-4f4f-b870-6f61e6e632fb.png)
