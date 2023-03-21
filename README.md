@@ -34,7 +34,3 @@ This repository contains scripts to get and visualize feature maps using differe
 ![Layer_3](https://user-images.githubusercontent.com/50166164/226518120-829ba749-30fc-4980-abb4-062c317d3f17.png)
 ![Layer_1](https://user-images.githubusercontent.com/50166164/226518117-9cf32962-b146-4a93-83a4-867fbdd9735b.png)
 ![Layer_0](https://user-images.githubusercontent.com/50166164/226518122-9366a7dc-04a2-4476-ba4e-2ac8f59c4158.png)
-
-
-
-
