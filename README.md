@@ -20,8 +20,21 @@ This repository contains scripts to get and visualize feature maps using differe
 ![Layer_0](https://user-images.githubusercontent.com/50166164/226510732-4d108536-46a1-4f4f-b870-6f61e6e632fb.png)
 
 ### EfficientNet_b3
+
 ![Layer_5](https://user-images.githubusercontent.com/50166164/226517981-798bc9b1-0f38-4993-9761-f47224ff8f92.png)
 ![Layer_3](https://user-images.githubusercontent.com/50166164/226517989-4e8614a1-0326-4dc6-8eee-7af76838894a.png)
 ![Layer_2](https://user-images.githubusercontent.com/50166164/226517987-48edb4b0-8071-4dca-8023-b3586fb8a03b.png)
 ![Layer_1](https://user-images.githubusercontent.com/50166164/226517985-2bb41cab-61b3-4abc-9db4-f5bf56f5e065.png)
 ![Layer_0](https://user-images.githubusercontent.com/50166164/226517984-bcb7b927-2d4f-496c-b3d5-2cb77c16392f.png)
+
+### RexNet_150
+
+![Layer_11](https://user-images.githubusercontent.com/50166164/226518121-5f3258a4-ce6e-428e-9f17-e0677e8f5048.png)
+![Layer_5](https://user-images.githubusercontent.com/50166164/226518116-180a4eb9-4976-4f94-b255-03c3bd3a99df.png)
+![Layer_3](https://user-images.githubusercontent.com/50166164/226518120-829ba749-30fc-4980-abb4-062c317d3f17.png)
+![Layer_1](https://user-images.githubusercontent.com/50166164/226518117-9cf32962-b146-4a93-83a4-867fbdd9735b.png)
+![Layer_0](https://user-images.githubusercontent.com/50166164/226518122-9366a7dc-04a2-4476-ba4e-2ac8f59c4158.png)
+
+
+
+
