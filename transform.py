@@ -10,9 +10,13 @@ def apply_transformations(im_path, im_size, random_tfs):
     
     Arguments:
     
-        im_path - a path to the image to be transformed, str;
-        im_size - desired size for the image, tuple;
-        random_tfs - apply a random transformation or not, bool.
+        im_path     - a path to the image to be transformed, str;
+        im_size     - desired size for the image, tuple;
+        random_tfs  - apply a random transformation or not, bool.
+        
+    Output:
+        
+        transformations, torchvision object.
     
     """
     
