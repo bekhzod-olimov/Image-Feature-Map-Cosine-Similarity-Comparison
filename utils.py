@@ -77,13 +77,14 @@ def predict(model, im, device):
     
     Arguments:
     
-        model  - model to be trained;
-        im     - an image;
-        device - gpu device name.
+        model  - model to be trained, timm model object;
+        im     - an image, tensor;
+        device - gpu device name, str.
         
    Outputs:
    
-       top3 values and indices.
+       values  - squeezed top3 values, tensor;
+       indices - squeezed top3 indices, tensor.
     
     """
 
