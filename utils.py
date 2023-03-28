@@ -53,12 +53,13 @@ def load_model(model_name, num_classes):
     
     Arguments:
     
-        model_name  - a model name in timm models list;
-        num_classes - number of classes in the considered dataset.
+        model_name  - a model name in timm models list, str;
+        num_classes - number of classes in the considered dataset, int.
         
-    Output:
+    Outputs:
     
-        model and input size for the model.
+        model       - a model to be used for the experiments, timm model object;
+        im_size     - input image size for the model, tuple.
     
     """
     
@@ -66,7 +67,7 @@ def load_model(model_name, num_classes):
     model = timm.create_model(model_name, pretrained = True, num_classes = num_classes)
     print(f"{model_name} model is successfully loaded!")
     
-    return model, model.pretrained_cfg["input_size"][1:] # tuple()
+    return model, model.pretrained_cfg["input_size"][1:] 
 
 def predict(model, im, device):
     
