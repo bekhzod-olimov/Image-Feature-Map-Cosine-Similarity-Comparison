@@ -11,12 +11,12 @@ def switch_to_eval(model, device):
     
     Arguments:
     
-        model  - a cpu model;
-        device - gpu device type.
+        model  - a cpu model, timm model object;
+        device - gpu device type, str.
         
     Output:
     
-        model that is switched to evaluation mode and moved to gpu.
+        model  - a model that is switched to evaluation mode and moved to gpu.
     
     """
     
@@ -33,11 +33,11 @@ def get_fm(fm):
         
         Argument:
         
-            fm - feature map.
+            fm  - feature map, tensor.
         
         Output:
         
-            2D feature map with the shape of (batch_size, feature map shape)
+            fm  - 2D feature map with the shape of (batch_size, feature map shape), tensor.
             
         """
         
