@@ -9,21 +9,20 @@ def switch_to_eval(model, device):
     
     This function gets a model as well as gpu device type and moves the model to the gpu device.
     
-    Arguments:
+    Parameters:
     
         model  - a cpu model, timm model object;
         device - gpu device type, str.
         
     Output:
     
-        model  - a model that is switched to evaluation mode and moved to gpu.
+        model  - a model that is switched to evaluation mode and moved to gpu, timm model object.
     
     """
     
     model.to(device)
-    model.eval()
     
-    return model
+    return model.eval()
 
 def get_fm(fm):
         
@@ -31,7 +30,7 @@ def get_fm(fm):
         
         This function gets feature map with size (bs, fm_shape, 7, 7) applies average pooling and returns feature map with shape (bs, fm_shape).
         
-        Argument:
+        Parameter:
         
             fm  - feature map, tensor.
         
@@ -51,7 +50,7 @@ def load_model(model_name, num_classes):
     
     This function gets a model name along with number of classes in the dataset and returns created model along with input size to the model.
     
-    Arguments:
+    Parameters:
     
         model_name  - a model name in timm models list, str;
         num_classes - number of classes in the considered dataset, int.
@@ -75,7 +74,7 @@ def predict(model, im, device):
     
     This function gets model, image, gpu device and return top3 values and indices.
     
-    Arguments:
+    Parameters:
     
         model  - model to be trained, timm model object;
         im     - an image, tensor;
@@ -114,7 +113,7 @@ def preprocess(im1, im2):
     
     This function gets two images, applies transformations, and returns a concatenaed image.
     
-    Arguments:
+    Parameters:
     
         im1 - image number 1;
         im2 - image number 2.
@@ -144,7 +143,7 @@ def compute_cos_similarity(model, im1, im2, sim_fn):
     
     This function gets model, two images, and similarity function and returns similarity score for the images.
     
-    Arguments:
+    Parameters:
     
         model   - trained model;
         im1     - the first image to be compared;
@@ -153,7 +152,7 @@ def compute_cos_similarity(model, im1, im2, sim_fn):
         
     Output:
     
-        cos_sim - cosine similarity score between the two images.
+        cos_sim - cosine similarity score between the two images, float.
     
     """
     
