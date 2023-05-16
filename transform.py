@@ -8,7 +8,7 @@ def apply_transformations(im_path, im_size, random_tfs):
     
     This function gets an image path, image size, as well as random transformations and applies transformations to the image.
     
-    Arguments:
+    Parameters:
     
         im_path     - a path to the image to be transformed, str;
         im_size     - desired size for the image, tuple;
@@ -16,7 +16,7 @@ def apply_transformations(im_path, im_size, random_tfs):
         
     Output:
         
-        transformations, torchvision object.
+        out          - transformations to be applied to data, torchvision object.
     
     """
     
@@ -31,8 +31,7 @@ def apply_transformations(im_path, im_size, random_tfs):
                      # Resize
                      T.Resize(im_size), 
                      # Data Standardization
-                     T.Normalize(mean=(0.485, 0.456, 0.406),
-                                 std=(0.229, 0.224, 0.225)) 
+                     T.Normalize(mean = (0.485, 0.456, 0.406), std = (0.229, 0.224, 0.225)) 
                      ])
     
     # Initialize rotation transformation
