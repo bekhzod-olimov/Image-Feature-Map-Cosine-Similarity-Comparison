@@ -144,10 +144,10 @@ def compute_cos_similarity(model, im1, im2, sim_fn):
     
     Parameters:
     
-        model   - trained model;
-        im1     - the first image to be compared;
-        im2     - the second image to be compared;
-        sim_fn  - function to compute similarity
+        model   - trained model, timm model object;
+        im1     - the first image to be compared, tensor;
+        im2     - the second image to be compared, tensor;
+        sim_fn  - function to compute similarity, torch object.
         
     Output:
     
