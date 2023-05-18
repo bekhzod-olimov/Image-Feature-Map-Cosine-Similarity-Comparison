@@ -115,12 +115,12 @@ def preprocess(im1, im2):
     
     Parameters:
     
-        im1 - image number 1;
-        im2 - image number 2.
+        im1 - image number 1, tensor;
+        im2 - image number 2, tensor.
     
     Output:
     
-        a concatened image.
+        a concatened image, array.
         
     """
     
@@ -131,8 +131,7 @@ def preprocess(im1, im2):
                                ])
     
     # Apply transformations and change from tensor to array
-    im1 = invTrans(im1).permute(1,2,0).detach().cpu().numpy() * 255
-    im2 = invTrans(im2).permute(1,2,0).detach().cpu().numpy() * 255
+    im1, im2 = invTrans(im1).permute(1,2,0).detach().cpu().numpy() * 255, invTrans(im2).permute(1,2,0).detach().cpu().numpy() * 255
     
     # Return a concatenated image
     return cv2.hconcat([im1, im2])
